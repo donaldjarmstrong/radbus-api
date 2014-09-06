@@ -110,6 +110,8 @@
 
 <p>To use a request that requires authentication you must pass an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.8">Authorization</a> HTTP header with a <code>Bearer</code> token obtained by a supported OAuth2 provider.  Currently the RadBus API only supports OAuth2 tokens generated from Google ID's, which you can learn more about <a href="https://developers.google.com/accounts/docs/OAuth2">here</a>.</p>
 
+<p>That site will guide you in generating a token programmatically for the type of client app you're creating (mobile, web).  However, if all you want to do is manually generate a token for development purposes or just to exercise the API directly (using a tool like <a href="http://en.wikipedia.org/wiki/CURL">cURL</a> or <a href="http://www.getpostman.com/">Postman</a>), then check out the <a href="https://github.com/TargetRAD/radbus-api/wiki/Development-Environment#generating-an-oauth2-token">Generating an OAuth2 Token</a> section of the <a href="https://github.com/TargetRAD/radbus-api/wiki/Development-Environment">Development Environment</a> wiki page.</p>
+
 <p>When obtaining your OAuth2 token from Google, you will be required to provide three pieces of information that link the token to the RadBus API and the type of access the API requires on behalf of the user:</p>
 
 <ul>
