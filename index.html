@@ -46,11 +46,20 @@
 
 <ul>
 <li>
-<a href="#authentication">Authentication</a>
+<a href="#client-authentication">Client Authentication</a>
+
+<ul>
+<li><a href="#obtaining-your-api-key">Obtaining Your API Key</a></li>
+<li><a href="#using-your-api-key">Using Your API Key</a></li>
+<li><a href="#client-authentication-failure-responses">Client Authentication Failure Responses</a></li>
+</ul>
+</li>
+<li>
+<a href="#user-authentication">User Authentication</a>
 
 <ul>
 <li><a href="#creating-an-oauth2-token">Creating an OAuth2 Token</a></li>
-<li><a href="#authentication-failure-responses">Authentication Failure Responses</a></li>
+<li><a href="#user-authentication-failure-responses">User Authentication Failure Responses</a></li>
 </ul>
 </li>
 <li>
@@ -102,9 +111,38 @@
 <a name="version-1-api" class="anchor" href="#version-1-api"><span class="octicon octicon-link"></span></a>Version 1 API</h2>
 
 <h3>
-<a name="authentication" class="anchor" href="#authentication"><span class="octicon octicon-link"></span></a>Authentication</h3>
+<a name="client-authentication-coming-soon" class="anchor" href="#client-authentication-coming-soon"><span class="octicon octicon-link"></span></a>Client Authentication (Coming Soon)</h3>
 
-<p>Many RadBus API endpoints require requests to be authenticated since they need access to a user's personal schedule configuration.  Rather than store user credentials internally, RadBus uses <a href="http://tools.ietf.org/html/rfc6750">OAuth2 Authorization</a> to identify the user and then is able to look up their RadBus data.</p>
+<p>The API requires the use of an API key in order to access most of the resources.  The key helps those that operate the hosted version of the API to monitor usage.  As a developer of an app that uses the API, you will need to obtain your own API key and pass it with each request you make to the API.</p>
+
+<h4>
+<a name="obtaining-your-api-key" class="anchor" href="#obtaining-your-api-key"><span class="octicon octicon-link"></span></a>Obtaining Your API Key</h4>
+
+<p>To obtain your own API key, submit a request to the RadBus team via the API Key Request Form.  Once your request is processed, you'll get your key sent to you via the email address you provide in the form.</p>
+
+<h4>
+<a name="using-your-api-key" class="anchor" href="#using-your-api-key"><span class="octicon octicon-link"></span></a>Using Your API Key</h4>
+
+<p>Once you have an API key, you pass it to an API request via the <code>API-Key</code> HTTP request header:</p>
+
+<pre><code>GET https://api.radbus.io/v1/routes
+API-Key: your-api-key-here
+</code></pre>
+
+<h4>
+<a name="client-authentication-failure-responses" class="anchor" href="#client-authentication-failure-responses"><span class="octicon octicon-link"></span></a>Client Authentication Failure Responses</h4>
+
+<p>Any endpoint that requires client authentication can produce the following errors:</p>
+
+<p><code>401 Unauthorized</code></p>
+
+<ul>
+<li>No <code>API-Key</code> request header was passed.</li>
+<li>An invalid API key was passed</li>
+</ul><h3>
+<a name="user-authentication" class="anchor" href="#user-authentication"><span class="octicon octicon-link"></span></a>User Authentication</h3>
+
+<p>Many RadBus API endpoints require requests to be user authenticated since they need access to a user's personal schedule configuration.  Rather than store user credentials internally, RadBus uses <a href="http://tools.ietf.org/html/rfc6750">OAuth2 Authorization</a> to identify the user and then is able to look up their RadBus data.</p>
 
 <h4>
 <a name="creating-an-oauth2-token" class="anchor" href="#creating-an-oauth2-token"><span class="octicon octicon-link"></span></a>Creating an OAuth2 Token</h4>
@@ -122,9 +160,9 @@
 </ul><p>To obtain these values, the client should call the <a href="#oauth2-resource">OAuth2</a> resource.</p>
 
 <h4>
-<a name="authentication-failure-responses" class="anchor" href="#authentication-failure-responses"><span class="octicon octicon-link"></span></a>Authentication Failure Responses</h4>
+<a name="user-authentication-failure-responses" class="anchor" href="#user-authentication-failure-responses"><span class="octicon octicon-link"></span></a>User Authentication Failure Responses</h4>
 
-<p>Any endpoint that requires authentication can produce the following errors:</p>
+<p>Any endpoint that requires user authentication can produce the following errors:</p>
 
 <p><code>401 Unauthorized</code></p>
 
@@ -192,10 +230,15 @@
 <h4>
 <a name="fetch-get-v1routes" class="anchor" href="#fetch-get-v1routes"><span class="octicon octicon-link"></span></a>Fetch (GET /v1/routes)</h4>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-2" class="anchor" href="#sample-request-2"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
 <pre><code>GET https://api.radbus.io/v1/routes
+API-Key: &lt;client-api-key&gt;
 </code></pre>
 
 <h5>
@@ -220,10 +263,15 @@
 <h4>
 <a name="fetch-get-v1routesroute" class="anchor" href="#fetch-get-v1routesroute"><span class="octicon octicon-link"></span></a>Fetch (GET /v1/routes/:route)</h4>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-3" class="anchor" href="#sample-request-3"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
 <pre><code>GET https://api.radbus.io/v1/routes/4
+API-Key: &lt;client-api-key&gt;
 </code></pre>
 
 <h5>
@@ -269,12 +317,17 @@
 <h4>
 <a name="fetch-get-v1schedule" class="anchor" href="#fetch-get-v1schedule"><span class="octicon octicon-link"></span></a>Fetch (GET /v1/schedule)</h4>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+<li>Requires <a href="#user-authentication">User Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-4" class="anchor" href="#sample-request-4"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
-<p>Requires <a href="#authentication">Authentication</a></p>
-
 <pre><code>GET https://api.radbus.io/v1/schedule
+API-Key: &lt;client-api-key&gt;
 Authorization: Bearer &lt;oauth2-token&gt;
 </code></pre>
 
@@ -355,12 +408,17 @@ Authorization: Bearer &lt;oauth2-token&gt;
 
 <p>Adds or updates a single route to the authenticated user's schedule.</p>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+<li>Requires <a href="#user-authentication">User Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-5" class="anchor" href="#sample-request-5"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
-<p>Requires <a href="#authentication">Authentication</a></p>
-
 <pre><code>POST https://api.radbus.io/v1/schedule/routes
+API-Key: &lt;client-api-key&gt;
 Authorization: Bearer &lt;oauth2-token&gt;
 Content-Type: application/json
 </code></pre>
@@ -424,12 +482,17 @@ Content-Type: application/json
 
 <p>Removes an existing route from the authenticated user's schedule.</p>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+<li>Requires <a href="#user-authentication">User Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-6" class="anchor" href="#sample-request-6"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
-<p>Requires <a href="#authentication">Authentication</a></p>
-
 <pre><code>DELETE https://api.radbus.io/v1/schedule/routes/4
+API-Key: &lt;client-api-key&gt;
 Authorization: Bearer &lt;oauth2-token&gt;
 </code></pre>
 
@@ -450,12 +513,17 @@ Authorization: Bearer &lt;oauth2-token&gt;
 
 <p>Removes the authenticated user's schedule (all routes, directions, and stops).</p>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+<li>Requires <a href="#user-authentication">User Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-7" class="anchor" href="#sample-request-7"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
-<p>Requires <a href="#authentication">Authentication</a></p>
-
 <pre><code>DELETE https://api.radbus.io/v1/schedule
+API-Key: &lt;client-api-key&gt;
 Authorization: Bearer &lt;oauth2-token&gt;
 </code></pre>
 
@@ -477,12 +545,17 @@ Authorization: Bearer &lt;oauth2-token&gt;
 <h4>
 <a name="fetch-get-v1departures" class="anchor" href="#fetch-get-v1departures"><span class="octicon octicon-link"></span></a>Fetch (GET /v1/departures)</h4>
 
-<h5>
+<ul>
+<li>
+<strong>Coming Soon:</strong> Requires <a href="#client-authentication">Client Authentication</a>
+</li>
+<li>Requires <a href="#user-authentication">User Authentication</a>
+</li>
+</ul><h5>
 <a name="sample-request-8" class="anchor" href="#sample-request-8"><span class="octicon octicon-link"></span></a>Sample Request</h5>
 
-<p>Requires <a href="#authentication">Authentication</a></p>
-
 <pre><code>GET https://api.radbus.io/v1/departures
+API-Key: &lt;client-api-key&gt;
 Authorization: Bearer &lt;oauth2-token&gt;
 </code></pre>
 
